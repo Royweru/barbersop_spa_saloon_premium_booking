@@ -21,7 +21,7 @@ export default function BookingTimePage() {
 
   const handleSelectDate = (date: string) => {
     dispatch({ type: 'SET_DATE', payload: date });
-    dispatch({ type: 'SET_TIME', payload: null }); // Reset time when date changes
+    dispatch({ type: 'SET_TIME', payload: null }); 
   };
 
   const handleSelectTime = (time: string) => {
@@ -29,43 +29,43 @@ export default function BookingTimePage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="font-outfit text-3xl font-bold mb-8">Select date and time</h1>
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <h1 className="font-headline-xl-mobile md:font-headline-xl text-charcoal-text mb-8">Select date and time</h1>
 
       {/* Date Carousel */}
-      <div className="mb-8">
+      <div className="mb-10">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-bold text-lg">Select a date</h2>
+          <h2 className="font-headline-sm text-charcoal-text">Select a date</h2>
           <div className="flex gap-2">
-            <button className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-50">
-              <svg className="w-4 h-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button className="w-8 h-8 rounded-full border border-outline-variant/20 flex items-center justify-center hover:bg-stone-100 transition-colors">
+              <svg className="w-4 h-4 text-charcoal-text" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <button className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-50">
-              <svg className="w-4 h-4 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button className="w-8 h-8 rounded-full border border-outline-variant/20 flex items-center justify-center hover:bg-stone-100 transition-colors">
+              <svg className="w-4 h-4 text-charcoal-text" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
         </div>
 
-        <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide">
+        <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
           {mockDates.map(dateObj => {
             const isSelected = state.date === dateObj.fullDate;
             return (
               <button
                 key={dateObj.fullDate}
                 onClick={() => handleSelectDate(dateObj.fullDate)}
-                className={`flex-shrink-0 w-20 py-4 rounded-2xl border transition-all flex flex-col items-center justify-center ${
+                className={`flex-shrink-0 w-[72px] py-4 rounded-lg border transition-all flex flex-col items-center justify-center card-hover-lift ${
                   isSelected 
-                    ? 'bg-charcoal text-gold border-charcoal' 
-                    : 'bg-white border-stone-200 hover:border-gold text-charcoal'
+                    ? 'bg-charcoal-text text-white border-charcoal-text shadow-md' 
+                    : 'bg-white border-outline-variant/20 hover:border-charcoal-text text-charcoal-text'
                 }`}
               >
-                <span className={`text-sm mb-1 ${isSelected ? 'text-stone-300' : 'text-stone-500'}`}>{dateObj.day}</span>
-                <span className="text-2xl font-bold">{dateObj.date}</span>
-                <span className={`text-xs mt-1 ${isSelected ? 'text-stone-300' : 'text-stone-500'}`}>{dateObj.month}</span>
+                <span className={`text-xs uppercase tracking-wider mb-1 ${isSelected ? 'text-stone-300' : 'text-on-surface-variant'}`}>{dateObj.day}</span>
+                <span className="text-2xl font-light">{dateObj.date}</span>
+                <span className={`text-xs mt-1 uppercase tracking-wider ${isSelected ? 'text-stone-300' : 'text-on-surface-variant'}`}>{dateObj.month}</span>
               </button>
             );
           })}
@@ -77,7 +77,7 @@ export default function BookingTimePage() {
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {/* Morning Slots */}
           <div>
-            <h3 className="font-medium text-stone-500 mb-4">Morning</h3>
+            <h3 className="font-eyebrow-label text-on-surface-variant mb-4 uppercase tracking-widest">Morning</h3>
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
               {mockMorningTimes.map(time => {
                 const isSelected = state.time === time;
@@ -85,10 +85,10 @@ export default function BookingTimePage() {
                   <button
                     key={time}
                     onClick={() => handleSelectTime(time)}
-                    className={`py-3 rounded-xl border font-medium transition-all ${
+                    className={`py-3 rounded-md border font-medium text-sm transition-all card-hover-lift ${
                       isSelected
-                        ? 'bg-gold text-white border-gold ring-2 ring-gold/20'
-                        : 'bg-white border-stone-200 text-charcoal hover:border-gold'
+                        ? 'bg-primary text-charcoal-text border-primary shadow-sm'
+                        : 'bg-white border-outline-variant/20 text-charcoal-text hover:border-primary'
                     }`}
                   >
                     {time}
@@ -100,7 +100,7 @@ export default function BookingTimePage() {
 
           {/* Afternoon Slots */}
           <div>
-            <h3 className="font-medium text-stone-500 mb-4">Afternoon</h3>
+            <h3 className="font-eyebrow-label text-on-surface-variant mb-4 uppercase tracking-widest">Afternoon</h3>
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
               {mockAfternoonTimes.map(time => {
                 const isSelected = state.time === time;
@@ -108,10 +108,10 @@ export default function BookingTimePage() {
                   <button
                     key={time}
                     onClick={() => handleSelectTime(time)}
-                    className={`py-3 rounded-xl border font-medium transition-all ${
+                    className={`py-3 rounded-md border font-medium text-sm transition-all card-hover-lift ${
                       isSelected
-                        ? 'bg-gold text-white border-gold ring-2 ring-gold/20'
-                        : 'bg-white border-stone-200 text-charcoal hover:border-gold'
+                        ? 'bg-primary text-charcoal-text border-primary shadow-sm'
+                        : 'bg-white border-outline-variant/20 text-charcoal-text hover:border-primary'
                     }`}
                   >
                     {time}
@@ -122,11 +122,11 @@ export default function BookingTimePage() {
           </div>
         </div>
       ) : (
-        <div className="text-center py-12 border-2 border-dashed border-stone-200 rounded-2xl">
-          <svg className="w-12 h-12 text-stone-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-12 border border-dashed border-outline-variant/30 rounded-lg bg-stone-50/50">
+          <svg className="w-8 h-8 text-on-surface-variant/50 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <p className="text-stone-500">Please select a date to view available times.</p>
+          <p className="text-on-surface-variant text-sm">Please select a date to view available times.</p>
         </div>
       )}
     </div>

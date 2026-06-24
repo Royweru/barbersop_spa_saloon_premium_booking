@@ -1,12 +1,14 @@
 export default function HeroSection() {
   return (
-    <section className="relative rhythmic-bg-dark min-h-[795px] flex items-center justify-center py-section-padding-v px-margin-mobile md:px-gutter overflow-hidden">
+    <section className="relative rhythmic-bg-dark h-[100dvh] flex items-center justify-center py-section-padding-v px-margin-mobile md:px-gutter overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div 
-          className="w-full h-full bg-cover bg-center opacity-60" 
-          style={{ backgroundImage: "url('/images/hero_bg_2.jfif')" }}
+          className="w-full h-full bg-cover bg-center opacity-100" 
+          style={{ backgroundImage: "url('/images/hero_salon_spa.png')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/30 to-transparent" />
+        {/* Adaptive Gradient: Solid dark overlay for mobile text readability, fading to right on desktop */}
+        <div className="absolute inset-0 bg-black/60 md:bg-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent md:bg-gradient-to-r md:from-[#0D0D0D]/90 md:via-[#0D0D0D]/40 md:to-transparent" />
       </div>
       <div className="relative z-10 container mx-auto max-w-container-max grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
         <div className="lg:col-span-8 space-y-stack-lg">

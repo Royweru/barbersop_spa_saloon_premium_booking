@@ -32,19 +32,19 @@ export default function BookingServicesPage() {
   const filteredServices = mockServices.filter(s => s.category === activeCategory);
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="font-outfit text-3xl font-bold mb-8">Select services</h1>
+    <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <h1 className="font-headline-xl-mobile md:font-headline-xl text-charcoal-text mb-8">Select services</h1>
 
       {/* Category Tabs */}
-      <div className="flex overflow-x-auto gap-3 pb-4 mb-6 scrollbar-hide">
+      <div className="flex overflow-x-auto gap-3 pb-4 mb-6 scrollbar-hide -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
         {categories.map(cat => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
             className={`whitespace-nowrap px-5 py-2 rounded-full border text-sm font-medium transition-colors ${
               activeCategory === cat 
-                ? 'bg-charcoal text-white border-charcoal' 
-                : 'bg-white border-stone-200 text-stone-600 hover:border-charcoal'
+                ? 'bg-charcoal-text text-white border-charcoal-text' 
+                : 'bg-white border-outline-variant/20 text-on-surface-variant hover:border-charcoal-text'
             }`}
           >
             {cat}
@@ -54,8 +54,8 @@ export default function BookingServicesPage() {
 
       {/* Services List */}
       <div>
-        <h2 className="font-bold text-xl mb-4">{activeCategory}</h2>
-        <div className="space-y-4">
+        <h2 className="font-headline-md text-charcoal-text mb-4">{activeCategory}</h2>
+        <div className="space-y-3">
           {filteredServices.map(service => {
             const isSelected = state.services.some(s => s.id === service.id);
             
@@ -63,31 +63,31 @@ export default function BookingServicesPage() {
               <button
                 key={service.id}
                 onClick={() => handleToggleService(service)}
-                className={`w-full bg-white rounded-2xl p-6 text-left flex items-center justify-between transition-all ${
-                  isSelected ? 'border-2 border-gold ring-2 ring-gold/20' : 'border border-stone-200 hover:border-gold'
+                className={`w-full bg-white rounded-lg p-5 text-left flex items-start justify-between transition-all card-hover-lift ${
+                  isSelected ? 'border border-primary ring-1 ring-primary bg-primary/5 shadow-sm' : 'border border-outline-variant/20 hover:border-primary'
                 }`}
               >
-                <div>
-                  <h3 className="font-medium text-lg text-charcoal">{service.name}</h3>
-                  <p className="text-stone-500 text-sm mt-1">
+                <div className="pr-4">
+                  <h3 className="font-headline-sm text-charcoal-text">{service.name}</h3>
+                  <p className="text-on-surface-variant text-sm mt-1 mb-3">
                     {service.durationMinutes >= 60 
                       ? `${Math.floor(service.durationMinutes / 60)} hr ${service.durationMinutes % 60 > 0 ? `${service.durationMinutes % 60} min` : ''}` 
                       : `${service.durationMinutes} min`}
                   </p>
-                  <p className="font-bold text-charcoal mt-4">KES {service.price.toLocaleString()}</p>
+                  <p className="font-medium text-charcoal-text">KES {service.price.toLocaleString()}</p>
                 </div>
 
                 {/* Add / Check Icon */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-                  isSelected ? 'bg-gold text-white' : 'border border-stone-200 text-charcoal'
+                <div className={`w-8 h-8 shrink-0 rounded-full flex items-center justify-center transition-colors ${
+                  isSelected ? 'bg-primary text-charcoal-text' : 'border border-outline-variant/30 text-charcoal-text'
                 }`}>
                   {isSelected ? (
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                   )}
                 </div>
@@ -96,7 +96,7 @@ export default function BookingServicesPage() {
           })}
           
           {filteredServices.length === 0 && (
-            <p className="text-stone-500 py-8">No services found in this category.</p>
+            <p className="text-on-surface-variant py-8 text-center bg-white border border-outline-variant/10 rounded-lg">No services found in this category.</p>
           )}
         </div>
       </div>
